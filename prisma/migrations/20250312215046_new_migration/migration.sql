@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `Task` MODIFY `status` ENUM('OPEN', 'IN_PROGRESS', 'CLOSED') NULL DEFAULT 'OPEN';

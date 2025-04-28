@@ -1,6 +1,10 @@
-/*@import "tailwindcss/preflight";*/
+@import "@radix-ui/themes/styles.css";
 @import "tailwindcss";
 @import "tailwindcss/utilities";
+@import './theme-config.css';
+@plugin "@tailwindcss/typography";
+
+
 
 @theme {
   --color-mint-500: oklch(0.72 0.11 178);
@@ -13,4 +17,5 @@
 
   --color-bgdark: rgb(38, 38, 38);
   --color-textdark: rgb(255, 255, 255);
+
 }
