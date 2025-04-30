@@ -3,6 +3,8 @@ import Link from "next/link";
 import {IssueCard} from "@/app/issues/IssuesCard";
 import {prisma} from "@/prisma/client";
 import {revalidatePath} from "next/cache";
+import {IssuesFilter} from "@/app/components/IssuesFilter";
+import {Status} from "@prisma/client";
 
 async function handleDeleteTask(taskId: number) {
     "use server";
@@ -14,17 +16,30 @@ async function handleDeleteTask(taskId: number) {
     }
 }
 
-const IssuesPage = async () => {
+const IssuesPage = async ( {searchParams }: {searchParams: {status: Status}}) => {
 
-    const tasks = await prisma.task.findMany();
+    const params = await searchParams;
+
+    const statuses = Object.values(Status);
+
+    const status = statuses.includes(params.status) ? params.status : undefined;
+
+    const tasks = await prisma.task.findMany(
+        {
+            where: {
+                status
+            },
+        }
+    );
 
     return (
         <>
             <Box className="p-6">
-                <div className={'flex justify-between items-center mb-20'}>
+                <div className={'container mx-auto flex justify-between items-center mb-20'}>
                     <Heading as="h1" size="7" className="mb-6 text-center text-white">
                         User Issues
                     </Heading>
+                    <IssuesFilter/>
                     <Button size='2'><Link href={'/issues/new'}>Create new issue</Link></Button>
                 </div>
                 <div className="container mx-auto p-6">

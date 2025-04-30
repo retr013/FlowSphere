@@ -11,7 +11,6 @@ export default function Home() {
             <h1 className='text-textColor'>Issue Tracker</h1>
             <div className='bg-primary dark:bg-bgdark dark:text-textdark'>Text</div>
             <Button>My button</Button>
-            {/*<SignIn/>*/}
             <button onClick={() => signIn('google')}>llll</button>
         </div>
     )
