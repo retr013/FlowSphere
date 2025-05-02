@@ -30,7 +30,7 @@ export const TaskDeleteButton = ({handleDeleteTask, taskId}: Props) => {
         <>
             <AlertDialog.Root >
                 <AlertDialog.Trigger>
-                    <Button size='2' color='ruby'>Delete task</Button>
+                    <Button size='3' color='ruby'>Delete task</Button>
                 </AlertDialog.Trigger>
                 <AlertDialog.Content className="AlertDialogContent">
                     <AlertDialog.Title className="AlertDialogTitle">

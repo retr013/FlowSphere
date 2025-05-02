@@ -11,7 +11,7 @@ const statusOptions: { value: string, label?: Status }[] = [
     {value: 'Closed', label: 'CLOSED'},
 ]
 
-export const IssuesFilter = () => {
+export const IssuesFilter = ({defaultValue}: {defaultValue: Status | undefined}) => {
 
     const router = useRouter();
 
@@ -22,7 +22,7 @@ export const IssuesFilter = () => {
 
     return (
         <div>
-            <Select.Root onValueChange={filterIssues}>
+            <Select.Root onValueChange={filterIssues} defaultValue={defaultValue || ''}>
                 <Select.Trigger placeholder='Filter by status' className='w-48'/>
                 <Select.Content>
                     <Select.Group>

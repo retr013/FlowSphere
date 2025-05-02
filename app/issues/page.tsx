@@ -39,7 +39,7 @@ const IssuesPage = async ( {searchParams }: {searchParams: {status: Status}}) =>
                     <Heading as="h1" size="7" className="mb-6 text-center text-white">
                         User Issues
                     </Heading>
-                    <IssuesFilter/>
+                    <IssuesFilter defaultValue={status || undefined}/>
                     <Button size='2'><Link href={'/issues/new'}>Create new issue</Link></Button>
                 </div>
                 <div className="container mx-auto p-6">

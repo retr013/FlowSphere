@@ -1,122 +1,3 @@
-// 'use client'
-//
-// import {useState} from 'react'
-// import {Button, Flex, Text} from '@radix-ui/themes'
-// import {signIn, useSession} from "next-auth/react"
-// import {redirect, useSearchParams} from "next/navigation";
-//
-//
-// export default function SignIn() {
-//
-//     const {data: session} = useSession()
-//
-//     if (session?.user) {
-//         redirect('/issues')
-//     }
-//
-//     const searchParams = useSearchParams();
-//     const callbackUrl = searchParams.get('callbackUrl') || '/issues';
-//
-//     const [isExpanded, setIsExpanded] = useState(false)
-//     const [mode, setMode] = useState<'login' | 'signup' | null>(null)
-//
-//     const handleExpand = (selectedMode: 'login' | 'signup') => {
-//         setMode(selectedMode)
-//         setIsExpanded(true)
-//     }
-//
-//     const handleGoogleSignIn = async () => {
-//         const result = await signIn('google');
-//
-//         if (result?.error) {
-//             console.error('Google Sign-In failed:', result.error);
-//         } else {
-//             redirect(callbackUrl)
-//         }
-//     };
-//
-//     return (
-//         <div className="flex h-screen w-full overflow-hidden transition-all duration-400">
-//             {/* Left Panel */}
-//             <div
-//                 className={`flex flex-col items-center justify-center p-8 text-white transition-all duration-500 ease-in-out ${
-//                     isExpanded ? 'w-[65%]' : 'w-[35%]'
-//                 }`}
-//             >
-//                 <h1 className="text-4xl font-bold mb-8">
-//                     {mode === 'signup' ? 'Create Account' : mode === 'login' ? 'Welcome Back' : 'Welcome'}
-//                 </h1>
-//
-//                 {!isExpanded ? (
-//                     <Flex direction="column" gap="4">
-//                         <Button
-//                             variant="solid"
-//                             size="3"
-//                             className="mb-4 bg-white text-ruby hover:bg-gray-100 cursor-pointer"
-//                             onClick={() => handleExpand('login')}
-//                         >
-//                             Log In
-//                         </Button>
-//                         <Button
-//                             variant="outline"
-//                             size="3"
-//                             className="border-white text-white hover:bg-white hover:text-ruby cursor-pointer"
-//                             onClick={() => handleExpand('signup')}
-//                         >
-//                             Sign Up
-//                         </Button>
-//                     </Flex>
-//                 ) : (
-//                     <form className="w-full max-w-sm space-y-4 flex flex-col">
-//                         <input
-//                             type="email"
-//                             placeholder="Email"
-//                             className="w-full px-4 py-2 rounded bg-white text-black placeholder-black focus:outline-none"
-//                         />
-//                         <input
-//                             type="password"
-//                             placeholder="Password"
-//                             className="w-full px-4 py-2 rounded bg-white text-black placeholder-black focus:outline-none"
-//                         />
-//                         <Button size="3" className="w-full bg-white text-ruby hover:bg-gray-100 cursor-pointer">
-//                             {mode === 'signup' ? 'Sign Up' : 'Log In'}
-//                         </Button>
-//                         <div className="flex items-center my-6">
-//                             <div className="flex-grow border-t border-gray-300"></div>
-//                             <span className="mx-4 text-sm text-gray-500">OR</span>
-//                             <div className="flex-grow border-t border-gray-300"></div>
-//                         </div>
-//                         <button
-//                             className='max-w-fit bg-white text-black p-2.5 mt-2.5 justify-self-center mx-auto rounded hover:bg-[#e54666] transition-all duration-300 cursor-pointer'
-//                             onClick={() => signIn('google')}>Log in With Google
-//                         </button>
-//                         <button onClick={() => redirect('/issues')}>issues</button>
-//                     </form>
-//                 )}
-//             </div>
-//
-//             {/* Right Panel */}
-//             <div
-//                 className={`flex items-center justify-center p-12 bg-cover bg-center transition-all duration-700 ease-in-out ${
-//                     isExpanded ? 'w-[35%]' : 'w-[65%]'
-//                 }`}
-//                 style={{backgroundImage: "url('/images/bg.jpg')"}}
-//             >
-//                 <div
-//                     className="text-5xl text-white text-center max-w-lg tracking-widest font-light p-1.5 rounded-lg select-none">
-//                     <Text>
-//                         {mode === 'signup'
-//                             ? 'Join the platform and discover your full potential.'
-//                             : mode === 'login'
-//                                 ? 'Glad to see you again. Let’s get productive!'
-//                                 : 'Build better things. Empower your ideas.'}
-//                     </Text>
-//                 </div>
-//             </div>
-//         </div>
-//     )
-// }
-//
 "use client"
 
 import type React from "react"
@@ -161,7 +42,6 @@ export default function SignIn() {
                 callbackUrl,
                 redirect: false,
             })
-
             if (result?.error) {
                 setError("Google Sign-In failed. Please try again.")
                 console.error("Google Sign-In failed:", result.error)
@@ -203,9 +83,8 @@ export default function SignIn() {
                     router.push(result.url)
                 }
             }
-            // For signup mode - you would implement your registration logic here
             else if (mode === "signup") {
-                // Example: Call your registration API
+                // Call registration API
                 // const response = await fetch('/api/auth/register', {
                 //   method: 'POST',
                 //   headers: { 'Content-Type': 'application/json' },
@@ -238,7 +117,6 @@ export default function SignIn() {
 
     return (
         <div className="flex h-screen w-full overflow-hidden transition-all duration-400">
-            {/* Left Panel */}
             <div
                 className={`flex flex-col items-center justify-center p-8 text-white transition-all duration-500 ease-in-out bg-gradient-to-br from-ruby to-ruby-800 ${
                     isExpanded ? "w-[65%]" : "w-[35%]"
@@ -356,10 +234,8 @@ export default function SignIn() {
                     </form>
                 )}
             </div>
-
-            {/* Right Panel */}
             <div
-                className={`flex items-center justify-center p-12 bg-cover bg-center transition-all duration-700 ease-in-out ${
+                className={`flex items-center justify-center p-12 bg-cover bg-center transition-all duration-500 ease-in-out ${
                     isExpanded ? "w-[35%]" : "w-[65%]"
                 }`}
                 style={{ backgroundImage: "url('/images/bg.jpg')" }}

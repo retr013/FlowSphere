@@ -46,29 +46,31 @@ export const IssueCard = ({task, handleDeleteTask, handleUpdateTask}: Props) => 
 
     return (
         <>
-            <div
-                className="relative dark:bg-bgdark p-6 rounded-lg border border-gray-700 hover:shadow-md hover:scale-105 hover:z-10 transition duration-300 overflow-visible group">
-                <Link href={`/issues/${task.id}`} className="block">
-                    <p className="text-xl font-semibold text-ruby">{task.title}</p>
-                    <Text
-                        className="text-gray-300 mt-2 max-w-full resize-none overflow-hidden h-24 bg-transparent">
-                        {task.description}
-                    </Text>
-                    <div className="flex justify-between items-center mt-4">
+            <div className='relative group'>
+                <div
+                    className="dark:bg-bgdark p-6 rounded-lg border border-gray-700 hover:shadow-md group-hover:scale-105 transition duration-300 overflow-visible h-full">
+                    <Link href={`/issues/${task.id}`} className="block">
+                        <p className="text-xl font-semibold text-ruby">{task.title}</p>
+                        <Text
+                            className="text-gray-300 mt-2 max-w-full resize-none overflow-hidden h-24 bg-transparent">
+                            {task.description}
+                        </Text>
+                        <div className="flex justify-between items-center mt-4">
                         <span className="text-sm text-gray-400">
                           Task ID: <span className="font-semibold">{task.id}</span>
                         </span>
-                    </div>
-                    <div className="flex justify-between items-center mt-4">
+                        </div>
+                        <div className="flex justify-between items-center mt-4">
                         <span className="text-sm text-gray-400">
                           Created: <span className="font-semibold">{formattedDate}</span>
                         </span>
-                    </div>
-                    <IssueStatusBadge status={task.status}/>
-                </Link>
+                        </div>
+                        <IssueStatusBadge status={task.status}/>
+                    </Link>
+                </div>
                 {session?.status === 'authenticated' &&
-                    <div className="absolute left-0 w-full flex justify-center gap-2 bg-none p-4 transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:translate-y-4">
-                        <Button size="2" onClick={handleEditClick}>
+                    <div className="absolute left-0 flex justify-center -translate-y-8 gap-2 bg-none p-4 transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:translate-y-0.5 z-10 w-full">
+                        <Button size="3" onClick={handleEditClick}>
                             Edit
                         </Button>
                         <TaskDeleteButton handleDeleteTask={handleDeleteTask} taskId={task.id}/>

@@ -18,6 +18,6 @@ export default auth((req) => {
 });
 
 export const config = {
-    matcher: ["/issues/new", "/issues/edit/:path*"],
+    matcher: ["/issues/new", "/issues/edit/:path*", "/api/:path*"],
 };
 
