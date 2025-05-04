@@ -9,14 +9,14 @@ import {Status} from "@prisma/client";
 async function handleDeleteTask(taskId: number) {
     "use server";
     try {
-        await prisma.task.delete({ where: { id: taskId } });
+        await prisma.task.delete({where: {id: taskId}});
         revalidatePath("/issues"); // Refresh the page to update UI
     } catch (error) {
         console.error("Failed to delete task:", error);
     }
 }
 
-const IssuesPage = async ( {searchParams }: {searchParams: {status: Status}}) => {
+const IssuesPage = async ({searchParams}: { searchParams: { status: Status } }) => {
 
     const params = await searchParams;
 
@@ -26,11 +26,9 @@ const IssuesPage = async ( {searchParams }: {searchParams: {status: Status}}) =>
 
     const tasks = await prisma.task.findMany(
         {
-            where: {
-                status
-            },
-        }
-    );
+            where: {status},
+            include: {assignedToUser: true}
+        });
 
     return (
         <>
@@ -42,7 +40,7 @@ const IssuesPage = async ( {searchParams }: {searchParams: {status: Status}}) =>
                     <IssuesFilter defaultValue={status || undefined}/>
                     <Button size='2'><Link href={'/issues/new'}>Create new issue</Link></Button>
                 </div>
-                <div className="container mx-auto p-6">
+                <div className="container mx-auto">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         {tasks.map((task) => (
                             <IssueCard key={task.id} task={task} handleDeleteTask={handleDeleteTask}/>

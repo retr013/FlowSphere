@@ -18,6 +18,7 @@ export default function SignIn() {
     const [mode, setMode] = useState<"login" | "signup" | null>(null)
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [username, setUsername] = useState("")
     const [error, setError] = useState<string | null>(null)
     const [isLoading, setIsLoading] = useState(false)
 
@@ -153,6 +154,23 @@ export default function SignIn() {
                             <div className="bg-red-500/20 border border-red-500/50 text-white p-3 rounded-md text-sm">{error}</div>
                         )}
 
+                        {mode === "signup" &&
+                            <div className="space-y-2">
+                                <label htmlFor="username" className="text-sm font-medium">
+                                    Username
+                                </label>
+                                <input
+                                    id="username"
+                                    type="text"
+                                    value={username}
+                                    onChange={(e) => setUsername(e.target.value)}
+                                    placeholder="John Doe"
+                                    className="w-full px-4 py-2 rounded bg-white/10 border border-white/30 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50"
+                                    disabled={isLoading}
+                                    required
+                                />
+                            </div>}
+
                         <div className="space-y-2">
                             <label htmlFor="email" className="text-sm font-medium">
                                 Email
@@ -214,7 +232,10 @@ export default function SignIn() {
 
                         <div className="text-center mt-4">
                             <button
-                                onClick={() => setIsExpanded(false)}
+                                onClick={() => {
+                                    setIsExpanded(false)
+                                    setMode(null)
+                                }}
                                 className="text-sm text-white/70 hover:text-white underline"
                                 type="button"
                                 disabled={isLoading}

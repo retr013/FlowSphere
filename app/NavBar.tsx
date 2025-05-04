@@ -11,7 +11,7 @@ import Logo from "@/app/components/Logo";
 export const NavBar = () => {
 
     return (
-        <nav className={'flex border-b border-gray-200 p-4 items-center dark:bg-bgdark dark:text-textdark'}>
+        <nav className={'flex p-4 items-center dark:bg-bgdark dark:text-textdark'}>
             <Link className='flex items-center text-xl gap-1.5' href='/'>
                 <Logo/>
                 FlowSphere
