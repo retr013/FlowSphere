@@ -7,6 +7,7 @@ import { Button, Flex, Text } from "@radix-ui/themes"
 import { signIn, useSession } from "next-auth/react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { FcGoogle } from "react-icons/fc"
+import axios from "axios";
 
 export default function SignIn() {
     const router = useRouter()
@@ -62,14 +63,13 @@ export default function SignIn() {
         setIsLoading(true)
         setError(null)
 
-        if (!email || !password) {
-            setError("Please enter both email and password")
+        if (!email || !password || !username) {
+            setError("All fields must be filled")
             setIsLoading(false)
             return
         }
 
         try {
-            // For login mode
             if (mode === "login") {
                 const result = await signIn("credentials", {
                     email,
@@ -85,23 +85,16 @@ export default function SignIn() {
                 }
             }
             else if (mode === "signup") {
-                // Call registration API
-                // const response = await fetch('/api/auth/register', {
-                //   method: 'POST',
-                //   headers: { 'Content-Type': 'application/json' },
-                //   body: JSON.stringify({ email, password }),
-                // })
 
-                // if (!response.ok) {
-                //   const data = await response.json()
-                //   throw new Error(data.message || 'Failed to create account')
-                // }
-
-                // After successful registration, sign in the user
-                // await signIn('credentials', { email, password, callbackUrl, redirect: false })
-
-                // For now, just show a message
-                setError("Signup functionality is not implemented yet")
+                const response = await axios.post('/api/auth/signup', {
+                    email,
+                    password,
+                    name: username,
+                })
+                    .catch(error => console.log(error))
+                    .finally( async () => {
+                        await signIn('credentials', { email, password, callbackUrl, redirect: false })
+                    })
             }
         } catch (err) {
             setError(err instanceof Error ? err.message : "An unexpected error occurred")
