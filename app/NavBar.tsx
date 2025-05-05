@@ -1,12 +1,12 @@
 'use client'
 
 import Link from "next/link";
-import {AiFillAlert} from "react-icons/ai";
 import {redirect, usePathname} from "next/navigation";
 import {signOut, useSession} from "next-auth/react";
 import {Avatar, Box, Button} from "@radix-ui/themes";
 import {DropdownMenu} from "radix-ui";
 import Logo from "@/app/components/Logo";
+import userPicture from "@/public/images/userPic.png";
 
 export const NavBar = () => {
 
@@ -38,7 +38,7 @@ function UserAvatarMenu() {
         <Box>
             <DropdownMenu.Root>
                 <DropdownMenu.Trigger>
-                    <Avatar src={session!.user!.image!}
+                    <Avatar src={session!.user!.image! || userPicture.src}
                             fallback={<div className="w-8 h-8 rounded-full bg-gray-300 animate-pulse"></div>}
                             radius="full" referrerPolicy="no-referrer" size="2" className="cursor-pointer"/>
                 </DropdownMenu.Trigger>
