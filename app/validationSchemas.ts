@@ -11,4 +11,5 @@ export const patchTaskSchema = z.object({
     description: z.string().min(1, 'Description is required').nonempty('Description is required').max(35000).optional(),
     assignedToUserId: z.string().min(1, 'User is required').optional().nullable(),
     id: z.number().optional(),
+    status: z.enum(['OPEN', 'IN_PROGRESS', 'CLOSED']).optional(),
 });

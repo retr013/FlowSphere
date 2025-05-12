@@ -24,11 +24,10 @@ type TaskWithUser = Prisma.TaskGetPayload<{
 
 interface Props {
     task: TaskWithUser
-    handleDeleteTask: (id: number) => Promise<void>
-    handleUpdateTask?: (id: number, updatedTask: Partial<Task>) => Promise<void>
+    handleDeleteTaskAction: (id: number) => Promise<void>
 }
 
-export const IssueCard = ({task, handleDeleteTask, handleUpdateTask}: Props) => {
+export const IssueCard = ({task, handleDeleteTaskAction }: Props) => {
 
     const session = useSession()
 
@@ -39,7 +38,7 @@ export const IssueCard = ({task, handleDeleteTask, handleUpdateTask}: Props) => 
     const handleDelete = async (e: React.MouseEvent) => {
         e.preventDefault()
         e.stopPropagation()
-        await handleDeleteTask(task.id)
+        await handleDeleteTaskAction(task.id)
     }
 
     const handleEditClick = (e: React.MouseEvent) => {
@@ -85,7 +84,7 @@ export const IssueCard = ({task, handleDeleteTask, handleUpdateTask}: Props) => 
                         <Button size="3" onClick={handleEditClick}>
                             Edit
                         </Button>
-                        <TaskDeleteButton handleDeleteTask={handleDeleteTask} taskId={task.id}/>
+                        <TaskDeleteButton handleDeleteTask={handleDeleteTaskAction} taskId={task.id}/>
                     </div>
                 }
             </div>

@@ -17,18 +17,18 @@ export const IssuesSummary = ({open, inProgress, closed} : Props) => {
     ]
 
     return (
-        <Flex>
+        <Flex justify='center'>
             {columns.map((column) => (
                 <Flex
                     key={column.label}
                     direction="column"
                     align="center"
                     gap="1"
-                    className="bg-zinc-800 border border-gray-700 rounded-lg p-4 m-2 w-1/3 hover:scale-105 duration-300 transition"
+                    className="bg-zinc-800 border border-gray-700 rounded-lg xl:p-4 m-2 w-1/3 hover:scale-105 duration-300 transition"
                 >
-                    <Link href={`/issues?status=${column.status}`} className="w-full h-full flex flex-col items-center">
-                        <h3 className="text-lg font-bold">{column.label}</h3>
-                        <p className="text-xl font-semibold">{column.value}</p>
+                    <Link href={`/issues?status=${column.status}`} className="flex w-full h-full flex-col items-center p-2">
+                        <h3 className="text-md xl:text-lg font-bold text-center">{column.label}</h3>
+                        <p className="text-md xl:text-xl font-semibold">{column.value}</p>
                     </Link>
                 </Flex>
             ))}

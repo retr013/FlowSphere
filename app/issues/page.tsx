@@ -43,7 +43,7 @@ const IssuesPage = async ({searchParams}: { searchParams: { status: Status } }) 
                 <div className="container mx-auto">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         {tasks.map((task) => (
-                            <IssueCard key={task.id} task={task} handleDeleteTask={handleDeleteTask}/>
+                            <IssueCard key={task.id} task={task} handleDeleteTaskAction={handleDeleteTask}/>
                         ))}
                     </div>
                 </div>

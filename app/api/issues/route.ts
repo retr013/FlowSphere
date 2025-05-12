@@ -62,7 +62,7 @@ export async function PUT(request: NextRequest) {
         }
     }
 
-    const {title, description, id, assignedToUserId} = validation.data;
+    const {title, description, id, assignedToUserId, status} = validation.data;
 
     const issue = await prisma.task.update({
         where: {
@@ -71,7 +71,8 @@ export async function PUT(request: NextRequest) {
         data: {
             title,
             description,
-            assignedToUserId
+            assignedToUserId,
+            status
         }
     });
 

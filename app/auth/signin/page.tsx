@@ -168,8 +168,8 @@ export default function SignIn() {
     return (
         <div className="flex h-screen w-full overflow-hidden transition-all duration-400">
             <div
-                className={`flex flex-col items-center justify-center p-8 text-white transition-all duration-500 ease-in-out bg-gradient-to-br from-ruby to-ruby-800 ${
-                    isExpanded ? "w-[65%]" : "w-[35%]"
+                className={`mx-auto flex flex-col items-center justify-center p-8 text-white transition-all duration-500 ease-in-out bg-gradient-to-br from-ruby to-ruby-800 ${
+                    isExpanded ? "w-full lg:w-[65%]" : "w-[65%] lg:w-[35%]"
                 }`}
             >
                 <h1 className="text-4xl font-bold mb-8">
@@ -403,7 +403,7 @@ export default function SignIn() {
                 )}
             </div>
             <div
-                className={`flex items-center justify-center p-12 bg-cover bg-center transition-all duration-500 ease-in-out ${
+                className={`hidden md:flex items-center justify-center p-12 bg-cover bg-center transition-all duration-500 ease-in-out ${
                     isExpanded ? "w-[35%]" : "w-[65%]"
                 }`}
                 style={{backgroundImage: "url('/images/bg.jpg')"}}
