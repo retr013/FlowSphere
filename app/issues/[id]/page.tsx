@@ -3,10 +3,19 @@ import {notFound} from "next/navigation";
 import {Box, Flex} from "@radix-ui/themes";
 import {IssueDetails} from "@/app/issues/[id]/IssueDetails";
 import {UserSelector} from "@/app/issues/[id]/UserSelector";
-import {Loader} from "@/app/components/Loader";
-import dynamic from "next/dynamic";
 import React, {Suspense} from "react";
 import {StatusSelectorWrapper} from "@/app/issues/[id]/StatusSelectorWrapper";
+import {Metadata} from "next";
+
+export const metadata: Metadata = {
+    title: "Issue Details | FlowSphere",
+    description: "View and edit the issue details",
+    openGraph: {
+        title: "Issue Details | FlowSphere",
+        description: "View and edit the issue details",
+        type: "website",
+    }
+}
 
 interface Props {
     params: { id: string };

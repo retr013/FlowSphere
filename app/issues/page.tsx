@@ -5,6 +5,17 @@ import {prisma} from "@/prisma/client";
 import {revalidatePath} from "next/cache";
 import {IssuesFilter} from "@/app/components/IssuesFilter";
 import {Status} from "@prisma/client";
+import {Metadata} from "next";
+
+export const metadata: Metadata = {
+    title: "Issues | FlowSphere",
+    description: "View and manage all your tasks and issues in one place",
+    openGraph: {
+        title: "Issues | FlowSphere",
+        description: "View and manage all your tasks and issues in one place",
+        type: "website",
+    }
+}
 
 async function handleDeleteTask(taskId: number) {
     "use server";

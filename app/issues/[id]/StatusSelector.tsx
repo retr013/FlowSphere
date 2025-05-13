@@ -4,6 +4,7 @@ import {Select} from "@radix-ui/themes";
 import {Status, Task} from "@prisma/client";
 import axios from "axios";
 import toast, {Toaster} from "react-hot-toast";
+import {useRouter} from "next/navigation";
 
 interface Props {
     issue: Task,
@@ -11,6 +12,8 @@ interface Props {
 
 
 const StatusSelector = ({ issue }: Props) => {
+
+    const router = useRouter()
 
     const statuses = [
         {value: 'OPEN', label: 'Open'},
@@ -25,6 +28,7 @@ const StatusSelector = ({ issue }: Props) => {
         })
             .then(() => toast.success('Status changed successfully'))
             .catch(() => toast.error('Error updating issue'))
+            .finally(router.refresh)
     }
 
     return (
