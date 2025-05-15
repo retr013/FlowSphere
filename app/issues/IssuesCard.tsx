@@ -3,9 +3,9 @@
 import type React from "react"
 
 import {useState} from "react"
-import {Button, Text, Dialog, Avatar} from "@radix-ui/themes"
+import {Button, Text, Dialog } from "@radix-ui/themes"
 import {IssueStatusBadge} from "@/app/components/IssueStatusBadge"
-import {Prisma, Task} from "@prisma/client"
+import {Prisma} from "@prisma/client"
 import Link from "next/link"
 import FormatDate from "../utils/FormatDate"
 import dynamic from "next/dynamic";

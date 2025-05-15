@@ -1,5 +1,5 @@
 import { auth } from "@/auth";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 const protectedRoutes = ['/issues/new'];
 const publicRoutes = ['/auth/signin', '/issues'];

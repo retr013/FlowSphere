@@ -3,7 +3,6 @@ import {notFound} from "next/navigation";
 import {Box, Flex} from "@radix-ui/themes";
 import {IssueDetails} from "@/app/issues/[id]/IssueDetails";
 import {UserSelector} from "@/app/issues/[id]/UserSelector";
-import React, {Suspense} from "react";
 import {StatusSelectorWrapper} from "@/app/issues/[id]/StatusSelectorWrapper";
 import {Metadata} from "next";
 
@@ -23,8 +22,7 @@ interface Props {
 
 const IssueDetailPage = async ({params}: Props) => {
 
-    const resolvedParams = await params;
-    const id = parseInt(resolvedParams.id);
+    const id = parseInt(params.id);
 
     const issue = await prisma.task.findUnique({
         where: {id},

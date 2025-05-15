@@ -1,8 +1,8 @@
 import './globals.css'
+import React from 'react'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import {NavBar} from "@/app/NavBar";
-import {Theme, ThemePanel} from "@radix-ui/themes";
+import {Theme} from "@radix-ui/themes";
 import {AuthProvider} from "@/app/auth/Provider";
 import NavbarWrapper from "@/app/components/NavbarWrapper";
 import QueryClientProvider from "@/app/QueryClientProvider";

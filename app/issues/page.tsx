@@ -6,6 +6,7 @@ import {revalidatePath} from "next/cache";
 import {IssuesFilter} from "@/app/components/IssuesFilter";
 import {Status} from "@prisma/client";
 import {Metadata} from "next";
+import {SearchParams} from "next/dist/server/request/search-params";
 
 export const metadata: Metadata = {
     title: "Issues | FlowSphere",
@@ -27,13 +28,15 @@ async function handleDeleteTask(taskId: number) {
     }
 }
 
-const IssuesPage = async ({searchParams}: { searchParams: { status: Status } }) => {
+const IssuesPage = async ({ searchParams }: { searchParams: Promise<any> }) => {
 
-    const params = await searchParams;
+    // const params = await searchParams;
+
+    const params = await (searchParams as Promise<SearchParams>)
 
     const statuses = Object.values(Status);
 
-    const status = statuses.includes(params.status) ? params.status : undefined;
+    const status = statuses.includes(params.status as Status) ? (params.status as Status) : undefined
 
     const tasks = await prisma.task.findMany(
         {
@@ -48,7 +51,7 @@ const IssuesPage = async ({searchParams}: { searchParams: { status: Status } }) 
                     <Heading as="h1" size="7" className="mb-6 text-center text-white">
                         User Issues
                     </Heading>
-                    <IssuesFilter defaultValue={status || undefined}/>
+                    <IssuesFilter defaultValue={status}/>
                     <Button size='2'><Link href={'/issues/new'}>Create new issue</Link></Button>
                 </div>
                 <div className="container mx-auto">

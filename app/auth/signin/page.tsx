@@ -8,7 +8,7 @@ import axios from "axios"
 import {z} from "zod"
 import {useForm} from "react-hook-form"
 import {zodResolver} from "@hookform/resolvers/zod"
-import {useState, useEffect} from "react"
+import React, {useState, useEffect} from "react"
 
 // Define Zod schemas for form validation
 const loginSchema = z.object({
@@ -107,7 +107,7 @@ export default function SignIn() {
                 email: data.email,
                 password: data.password,
                 redirect: false,
-                callbackUrl,
+                redirectTo: callbackUrl as string,
             })
 
             if (result?.error) {
@@ -138,7 +138,7 @@ export default function SignIn() {
             const result = await signIn("credentials", {
                 email: data.email,
                 password: data.password,
-                callbackUrl,
+                redirectTo: callbackUrl as string,
                 redirect: false,
             })
 

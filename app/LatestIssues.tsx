@@ -1,5 +1,5 @@
 import {prisma} from "@/prisma/client";
-import { Box, Card, Flex, Text, Heading, Badge, Button, Avatar, ScrollArea, Select, Tooltip } from "@radix-ui/themes"
+import { Box, Card, Flex, Text, Heading } from "@radix-ui/themes"
 import { getShortDate} from "@/app/utils/FormatDate";
 import {IssueStatusBadge} from "@/app/components/IssueStatusBadge";
 import Link from "next/link";
