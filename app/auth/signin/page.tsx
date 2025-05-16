@@ -81,7 +81,7 @@ export default function SignIn() {
 
         try {
             const result = await signIn("google", {
-                callbackUrl,
+                redirectTo: callbackUrl as string,
                 redirect: false,
             })
             if (result?.error) {
