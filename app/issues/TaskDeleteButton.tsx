@@ -27,10 +27,10 @@ export const TaskDeleteButton = ({handleDeleteTask, taskId}: Props) => {
     };
 
     return (
-        <>
-            <AlertDialog.Root >
+        <div className='z-20'>
+            <AlertDialog.Root>
                 <AlertDialog.Trigger>
-                    <Button size='3' color='ruby'>Delete task</Button>
+                    <Button size={{initial: "2", md: "3"}} color='ruby'>Delete task</Button>
                 </AlertDialog.Trigger>
                 <AlertDialog.Content className="AlertDialogContent">
                     <AlertDialog.Title className="AlertDialogTitle">
@@ -58,7 +58,7 @@ export const TaskDeleteButton = ({handleDeleteTask, taskId}: Props) => {
                     <Button variant='soft' color='gray' mt='4' onClick={() => setError(false)}>Close</Button>
                 </AlertDialog.Content>
             </AlertDialog.Root>
-        </>
+        </div>
     );
 };
 

@@ -30,8 +30,6 @@ async function handleDeleteTask(taskId: number) {
 
 const IssuesPage = async ({ searchParams }: { searchParams: Promise<any> }) => {
 
-    // const params = await searchParams;
-
     const params = await (searchParams as Promise<SearchParams>)
 
     const statuses = Object.values(Status);
@@ -47,17 +45,26 @@ const IssuesPage = async ({ searchParams }: { searchParams: Promise<any> }) => {
     return (
         <>
             <Box className="p-6">
-                <div className={'container mx-auto flex justify-between items-center mb-20'}>
-                    <Heading as="h1" size="7" className="mb-6 text-center text-white">
+                <div className="container mx-auto flex flex-col sm:flex-row justify-between items-center mb-12 gap-4">
+                    <Heading as="h1" size="7" className="mb-4 sm:mb-0 sm:text-left text-center text-white text-xl sm:text-3xl w-full md:w-auto">
                         User Issues
                     </Heading>
                     <IssuesFilter defaultValue={status}/>
-                    <Button size='2'><Link href={'/issues/new'}>Create new issue</Link></Button>
+                    <Button size="2" className="w-full md:w-auto">
+                        <Link href="/issues/new" className="block text-center">
+                            Create new issue
+                        </Link>
+                    </Button>
                 </div>
+
                 <div className="container mx-auto">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                         {tasks.map((task) => (
-                            <IssueCard key={task.id} task={task} handleDeleteTaskAction={handleDeleteTask}/>
+                            <IssueCard
+                                key={task.id}
+                                task={task}
+                                handleDeleteTaskAction={handleDeleteTask}
+                            />
                         ))}
                     </div>
                 </div>
