@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { LatestIssues } from "@/app/LatestIssues";
 import { IssuesSummary } from "@/app/IssuesSummary";
 import { prisma } from "@/prisma/client";
@@ -5,6 +7,7 @@ import { IssuesChart } from "@/app/IssuesChart";
 import { UsersSummary } from "@/app/UsersSummary";
 
 export default async function Home() {
+
     const open = await prisma.task.count({ where: { status: 'OPEN' } });
     const inProgress = await prisma.task.count({ where: { status: 'IN_PROGRESS' } });
     const closed = await prisma.task.count({ where: { status: 'CLOSED' } });
