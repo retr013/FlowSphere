@@ -35,12 +35,6 @@ export const IssueCard = ({task, handleDeleteTaskAction}: Props) => {
 
     const formattedDate = FormatDate(task.createdAt)
 
-    const handleDelete = async (e: React.MouseEvent) => {
-        e.preventDefault()
-        e.stopPropagation()
-        await handleDeleteTaskAction(task.id)
-    }
-
     const handleEditClick = (e: React.MouseEvent) => {
         e.preventDefault()
         e.stopPropagation()
@@ -49,51 +43,42 @@ export const IssueCard = ({task, handleDeleteTaskAction}: Props) => {
 
     return (
         <>
-            <div className="relative group">
+            <div className="relative group h-full">
                 <div
-                    className="dark:bg-bgdark px-4 sm:px-6 py-4 sm:py-5 rounded-lg border border-gray-700 hover:shadow-md group-hover:scale-[1.02] transition duration-300 overflow-visible h-full"
-                >
-                    <Link
-                        href={`/issues/${task.id}`}
-                        className="flex flex-col justify-between h-full"
-                    >
+                    className="dark:bg-bgdark px-4 sm:px-6 py-4 sm:py-5 rounded-lg border border-gray-700 hover:shadow-md group-hover:scale-[1.02] transition duration-300 overflow-visible flex flex-col h-full">
+                    <Link href={`/issues/${task.id}`} className="flex-grow flex flex-col justify-between">
                         <div className="pb-4">
-                            <p className="text-lg sm:text-2xl font-semibold text-ruby mb-2 sm:mb-4">
-                                {task.title}
-                            </p>
+                            <p className="text-lg sm:text-2xl font-semibold text-ruby mb-2 sm:mb-4">{task.title}</p>
                             <Text
                                 className="text-sm sm:text-base text-gray-300 mt-2 sm:mt-4 max-w-full resize-none overflow-hidden bg-transparent">
                                 {task.description}
                             </Text>
                         </div>
-
                         <div className="mt-auto">
                             <div className="flex justify-between items-center mt-4">
-            <span className="text-xs sm:text-sm text-gray-400">
-              Created: <span className="font-semibold">{formattedDate}</span>
-            </span>
+                                <span className="text-xs sm:text-sm text-gray-400">
+                                  Created: <span className="font-semibold">{formattedDate}</span>
+                                </span>
                             </div>
-
                             <div
                                 className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-2 mt-2">
                                 {task.assignedToUser?.name && (
-                                    <span className="text-xs sm:text-sm text-gray-400">
-                Assigned to:
-                <span className="font-semibold ml-1">{task.assignedToUser.name}</span>
-              </span>
+                                    <span className="text-xs sm:text-sm text-gray-400">Assigned to:
+                                        <span className="font-semibold ml-1">{task.assignedToUser.name}</span>
+                                    </span>
                                 )}
                                 <IssueStatusBadge status={task.status}/>
                             </div>
                         </div>
-                        <div className="mt-4 flex gap-2 lg:hidden">
-                            <Button size={{initial: "2", md: "3"}} onClick={handleEditClick} className="w-full">
-                                Edit
-                            </Button>
-                            <TaskDeleteButton handleDeleteTask={handleDeleteTaskAction} taskId={task.id}/>
-                        </div>
                     </Link>
+                    <div className="mt-4 flex gap-2 lg:hidden">
+                        <Button size={{initial: "2", md: "3"}} onClick={handleEditClick} className="w-full">
+                            Edit
+                        </Button>
+                        <TaskDeleteButton handleDeleteTask={handleDeleteTaskAction} taskId={task.id}/>
+                    </div>
                 </div>
-                {session?.status === 'authenticated' && (
+                {session?.status === "authenticated" && (
                     <div
                         className="absolute left-0 hidden lg:flex justify-center -translate-y-8 gap-2 bg-none p-4 transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:translate-y-0.5 z-10 w-full">
                         <Button size="3" onClick={handleEditClick}>
@@ -106,14 +91,15 @@ export const IssueCard = ({task, handleDeleteTaskAction}: Props) => {
 
             <Dialog.Root open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
                 <Dialog.Content className="dark:bg-gray-800 dark:border-gray-700">
-                    <Dialog.Title>Edit Task</Dialog.Title>
-                    <Dialog.Description size="2" mb="4">
+                    <Dialog.Title hidden={true}>Edit Task</Dialog.Title>
+                    <Dialog.Description size="2" mb="4" hidden={true}>
                         Make changes to the task details below.
                     </Dialog.Description>
                     <IssuesForm task={task} setIsEditDialogOpen={setIsEditDialogOpen}/>
                 </Dialog.Content>
             </Dialog.Root>
         </>
+
     )
 }
 
