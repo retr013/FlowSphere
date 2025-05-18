@@ -8,7 +8,7 @@ export const IssueDetails = ({issue}: { issue: Task }) => {
     return (
         <Flex direction="column" gap="4">
             <Flex justify="between" align="center">
-                <Heading as="h1" size="8" className="text-white">
+                <Heading as="h1" size={{ initial: "4", md: "6", lg: "8" }} className="text-white">
                     {issue.title}
                 </Heading>
                 <Button asChild variant="soft">
@@ -20,7 +20,7 @@ export const IssueDetails = ({issue}: { issue: Task }) => {
             </Box>
             <Flex justify="between" align="center">
                 <IssueStatusBadge status={issue.status}/>
-                <Text className="text-gray-400">
+                <Text className="text-gray-400 text-sm md:text-md">
                     Created on: {issue.createdAt.toDateString()}
                 </Text>
             </Flex>

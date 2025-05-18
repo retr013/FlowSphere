@@ -10,7 +10,7 @@ const IssuesForm = dynamic(() => import('@/app/issues/IssuesForm'), {
 
 const NewIssuePage = () => {
     return (
-        <div className='pt-16'>
+        <div className='pt-16 mx-6'>
             <IssuesForm/>
         </div>
     );

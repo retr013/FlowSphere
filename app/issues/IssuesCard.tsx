@@ -50,7 +50,7 @@ export const IssueCard = ({task, handleDeleteTaskAction}: Props) => {
                         <div className="pb-4">
                             <p className="text-lg sm:text-2xl font-semibold text-ruby mb-2 sm:mb-4">{task.title}</p>
                             <Text
-                                className="text-sm sm:text-base text-gray-300 mt-2 sm:mt-4 max-w-full resize-none overflow-hidden bg-transparent">
+                                className="text-sm sm:text-base text-gray-300 mt-2 sm:mt-4 max-w-full resize-none overflow-hidden bg-transparent line-clamp-4">
                                 {task.description}
                             </Text>
                         </div>
@@ -99,7 +99,6 @@ export const IssueCard = ({task, handleDeleteTaskAction}: Props) => {
                 </Dialog.Content>
             </Dialog.Root>
         </>
-
     )
 }
 

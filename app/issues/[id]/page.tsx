@@ -81,13 +81,15 @@ const IssueDetailPage = async ({params}: {params: Params}) => {
     }
 
     return (
-        <Box className="max-w-3xl mx-auto p-6 bg-bgdark text-white shadow-lg rounded-lg mt-16">
-            <IssueDetails issue={issue}/>
-            <Flex gap={'3'} className="mt-2">
-                <UserSelector issue={issue}/>
-                <StatusSelectorWrapper issue={issue} />
-            </Flex>
-        </Box>
+        <div className='px-6 max-w-3xl mx-auto mt-16'>
+            <Box className="w-full mx-auto p-6 bg-bgdark text-white shadow-lg rounded-lg">
+                <IssueDetails issue={issue}/>
+                <Flex gap={'3'} className="mt-2">
+                    <UserSelector issue={issue}/>
+                    <StatusSelectorWrapper issue={issue} />
+                </Flex>
+            </Box>
+        </div>
     );
 };
 

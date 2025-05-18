@@ -55,6 +55,7 @@ const NewIssuePage = ({ task, setIsEditDialogOpen }: Props) => {
                 router.push('/issues');
             }
         } catch (error) {
+            console.log(error);
             setError('An error occurred while submitting the form');
         } finally {
             setLoading(false);
